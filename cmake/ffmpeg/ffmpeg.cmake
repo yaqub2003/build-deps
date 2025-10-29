@@ -97,6 +97,7 @@ endif()
 # OS specific options not defined by the above BUILD_FFMPEG_* options
 if(WIN32)
     list(APPEND FFMPEG_EXTRA_CONFIGURE
+            --enable-dxva2
             --enable-d3d11va
             --enable-encoder=h264_qsv,hevc_qsv,av1_qsv
             --enable-libvpl
