@@ -351,7 +351,7 @@ jobs:
             "mingw-w64-${TOOLCHAIN}-nasm"
             "mingw-w64-${TOOLCHAIN}-ninja"
             "mingw-w64-${TOOLCHAIN}-onevpl"
-            "mingw-w64-${TOOLCHAIN}-intel-media-sdk"
+            "mingw-w64-${TOOLCHAIN}-libmfx"
           )
 
           # do not modify below this line
