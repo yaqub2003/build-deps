@@ -100,7 +100,7 @@ if(WIN32)
             --enable-dxva2
             --enable-d3d11va
             --enable-encoder=h264_qsv,hevc_qsv,av1_qsv
-            --enable-libvpl
+            --enable-libmfx
     )
 elseif(APPLE)
     list(APPEND FFMPEG_EXTRA_CONFIGURE
