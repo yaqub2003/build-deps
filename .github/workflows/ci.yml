@@ -192,28 +192,11 @@ jobs:
           echo "cross compiling: $cross_compile"
           echo "package architecture: $package_arch"
 
-          dependencies+=(
-          "libva-dev:$package_arch"
-            "libva-glx2:$package_arch"
-            "libgl1:$package_arch"
-            "libglx0:$package_arch"
-          )
+          if [[ "${package_arch}" == "amd64" ]]; then
+            dependencies+=("libva-dev" "libva-glx2" "libgl1" "libglx0")
+          fi
 
           echo "::group::apt sources"
-          source_file="/etc/apt/sources.list.d/ubuntu.sources"
-          
-          cat <<EOF | sudo tee $source_file > /dev/null
-          Types: deb
-          URIs: http://snapshot.ubuntu.com/ubuntu/20241027T000000Z
-          Suites: ${dist_name} ${dist_name}-updates ${dist_name}-security ${dist_name}-backports
-          Components: main universe multiverse restricted
-          Architectures: amd64 arm64 ppc64el
-          Signed-By: /usr/share/keyrings/ubuntu-archive-keyring.gpg
-          EOF
-          
-          sudo apt-get update
-          echo "::endgroup::"
-          
           mirror="https://ports.ubuntu.com/ubuntu-ports"
 
           # source file changed in 24.04
