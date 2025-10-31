@@ -194,14 +194,11 @@ jobs:
 
           dependencies+=(
             "libva-dev:$package_arch"
-            "libva-glx2:$package_arch"
+            "libva2:$package_arch"
+            "mesa-va-drivers:$package_arch"
+            "libgl1-mesa-glx:$package_arch"
             "libgl1:$package_arch"
-            "libglx0:$package_arch"
-            )
-
-            if [[ ${cross_compile} == false ]]; then
-            dependencies+=("mesa-va-drivers:${package_arch}")
-            fi
+          )
 
           echo "::group::apt sources"
           mirror="https://ports.ubuntu.com/ubuntu-ports"
