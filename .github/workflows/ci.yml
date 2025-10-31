@@ -201,7 +201,7 @@ jobs:
 
           echo "::group::apt sources"
           # Freeze repo to working snapshot
-          sudo bash -c 'cat > /etc/apt/sources.list <<EOF
+          sudo bash -c 'cat > /etc/apt/sources.list <<-EOF
           deb [arch=${package_arch}] http://snapshot.ubuntu.com/ubuntu/20241027T000000Z ${dist_name} main universe multiverse restricted
           deb [arch=${package_arch}] http://snapshot.ubuntu.com/ubuntu/20241027T000000Z ${dist_name}-updates main universe multiverse restricted
           deb [arch=${package_arch}] http://snapshot.ubuntu.com/ubuntu/20241027T000000Z ${dist_name}-security main universe multiverse restricted
