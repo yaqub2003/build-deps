@@ -197,7 +197,11 @@ jobs:
             "libva-glx2:$package_arch"
             "libgl1:$package_arch"
             "libglx0:$package_arch"
-          )
+            "libva-drm2:$package_arch"
+            "libva-x11-2:$package_arch"
+            "libdrm-dev:$package_arch"
+            "mesa-va-drivers:$package_arch"
+            )
 
           echo "::group::apt sources"
           mirror="https://ports.ubuntu.com/ubuntu-ports"
