@@ -75,7 +75,7 @@ if(BUILD_FFMPEG_SVT_AV1)
             --enable-encoder=libsvtav1
     )
 endif()
-if(BUILD_FFMPEG_VAAPI)
+if(BUILD_FFMPEG_VAAPI AND CMAKE_SYSTEM_PROCESSOR STREQUAL "x86_64")
     list(APPEND FFMPEG_EXTRA_CONFIGURE
             --enable-vaapi
             --enable-encoder=h264_vaapi,hevc_vaapi,av1_vaapi
