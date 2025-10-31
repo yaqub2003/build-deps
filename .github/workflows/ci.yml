@@ -200,15 +200,19 @@ jobs:
           )
 
           echo "::group::apt sources"
-          # Freeze repo to working snapshot
-          sudo bash -c 'cat > /etc/apt/sources.list <<-EOF
-          deb [arch=${package_arch}] http://snapshot.ubuntu.com/ubuntu/20241027T000000Z ${dist_name} main universe multiverse restricted
-          deb [arch=${package_arch}] http://snapshot.ubuntu.com/ubuntu/20241027T000000Z ${dist_name}-updates main universe multiverse restricted
-          deb [arch=${package_arch}] http://snapshot.ubuntu.com/ubuntu/20241027T000000Z ${dist_name}-security main universe multiverse restricted
-          deb [arch=${package_arch}] http://snapshot.ubuntu.com/ubuntu/20241027T000000Z ${dist_name}-backports main universe multiverse restricted
-          EOF'
+          source_file="/etc/apt/sources.list.d/ubuntu.sources"
+          
+          cat <<EOF | sudo tee $source_file > /dev/null
+          Types: deb
+          URIs: http://snapshot.ubuntu.com/ubuntu/20241027T000000Z
+          Suites: ${dist_name} ${dist_name}-updates ${dist_name}-security ${dist_name}-backports
+          Components: main universe multiverse restricted
+          Architectures: amd64 arm64 ppc64el
+          Signed-By: /usr/share/keyrings/ubuntu-archive-keyring.gpg
+          EOF
           
           sudo apt-get update
+          echo "::endgroup::"
           
           mirror="https://ports.ubuntu.com/ubuntu-ports"
 
