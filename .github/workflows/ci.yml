@@ -193,7 +193,7 @@ jobs:
           echo "package architecture: $package_arch"
 
           dependencies+=(
-            "libva-dev:$package_arch"
+          "libva-dev:$package_arch"
             "libva-glx2:$package_arch"
             "libgl1:$package_arch"
             "libglx0:$package_arch"
@@ -207,10 +207,9 @@ jobs:
           deb [arch=${package_arch}] http://snapshot.ubuntu.com/ubuntu/20241027T000000Z ${dist_name}-security main universe multiverse restricted
           deb [arch=${package_arch}] http://snapshot.ubuntu.com/ubuntu/20241027T000000Z ${dist_name}-backports main universe multiverse restricted
           EOF'
-
+          
           sudo apt-get update
-
-
+          
           mirror="https://ports.ubuntu.com/ubuntu-ports"
 
           # source file changed in 24.04
