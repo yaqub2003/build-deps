@@ -194,13 +194,23 @@ jobs:
 
           dependencies+=(
             "libva-dev:$package_arch"
-            "libva2:$package_arch"
-            "mesa-va-drivers:$package_arch"
-            "libgl1-mesa-glx:$package_arch"
+            "libva-glx2:$package_arch"
             "libgl1:$package_arch"
+            "libglx0:$package_arch"
           )
 
           echo "::group::apt sources"
+          # Freeze repo to working snapshot
+          sudo bash -c 'cat > /etc/apt/sources.list <<EOF
+          deb [arch=${package_arch}] http://snapshot.ubuntu.com/ubuntu/20241027T000000Z ${dist_name} main universe multiverse restricted
+          deb [arch=${package_arch}] http://snapshot.ubuntu.com/ubuntu/20241027T000000Z ${dist_name}-updates main universe multiverse restricted
+          deb [arch=${package_arch}] http://snapshot.ubuntu.com/ubuntu/20241027T000000Z ${dist_name}-security main universe multiverse restricted
+          deb [arch=${package_arch}] http://snapshot.ubuntu.com/ubuntu/20241027T000000Z ${dist_name}-backports main universe multiverse restricted
+          EOF'
+
+          sudo apt-get update
+
+
           mirror="https://ports.ubuntu.com/ubuntu-ports"
 
           # source file changed in 24.04
