@@ -561,6 +561,7 @@ jobs:
   update_dist:
     # only the commit is conditional, so the rest of the job can be verified on PRs
     name: Update dist
+    needs: build
     runs-on: ubuntu-latest
     steps:
       - name: Checkout dist
