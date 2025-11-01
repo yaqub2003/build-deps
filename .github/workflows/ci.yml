@@ -561,7 +561,6 @@ jobs:
   update_dist:
     # only the commit is conditional, so the rest of the job can be verified on PRs
     name: Update dist
-    needs: build
     runs-on: ubuntu-latest
     steps:
       - name: Checkout dist
@@ -624,7 +623,7 @@ jobs:
           (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
         uses: actions-js/push@v1.5
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.GH_TOKEN }}
           directory: dist
           branch: dist
           force: false
