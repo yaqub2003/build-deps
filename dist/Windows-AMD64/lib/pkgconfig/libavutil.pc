@@ -9,6 +9,6 @@ Version: 60.8.100
 Requires: 
 Requires.private: 
 Conflicts:
-Libs: -L${libdir}  -lavutil -lm -lvpl -lole32 -lgdi32 -luuid -luser32 -lbcrypt -latomic
+Libs: -L${libdir}  -lavutil -lm -lmfx -lstdc++ -lole32 -luuid -luser32 -lbcrypt -latomic
 Libs.private: 
 Cflags: -I${includedir}

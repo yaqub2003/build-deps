@@ -9,6 +9,6 @@ Version: 60.8.100
 Requires: 
 Requires.private: 
 Conflicts:
-Libs: -L${libdir}  -lavutil -L/usr/local/lib -lva-drm -lva -lm -L/usr/local/lib -lva -pthread
+Libs: -L${libdir}  -lavutil -lm -pthread
 Libs.private: 
 Cflags: -I${includedir}
