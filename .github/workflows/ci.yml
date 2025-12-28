@@ -23,7 +23,7 @@ concurrency:
 env:
   FREEBSD_CLANG_VERSION: 19
   LINUX_GCC_VERSION: 12
-  MACOSX_DEPLOYMENT_TARGET: 13.0
+  MACOSX_DEPLOYMENT_TARGET: 14.0
 
 jobs:
   build:
@@ -55,7 +55,7 @@ jobs:
             target: powerpc64le-linux-gnu
             build: ALL
           - name: Darwin-x86_64
-            os: macos-13
+            os: macos-15-intel
             arch: x86_64
             generator: "Unix Makefiles"
             shell: bash
@@ -319,7 +319,7 @@ jobs:
 
       - name: Setup msys2 Windows
         if: runner.os == 'Windows'
-        uses: msys2/setup-msys2@fb197b72ce45fb24f17bf3f807a388985654d1f2  # v2.29.0
+        uses: msys2/setup-msys2@4f806de0a5a7294ffabaff804b38a9b435a73bda  # v2.30.0
         with:
           msystem: ${{ matrix.msystem }}
           update: true
@@ -412,7 +412,7 @@ jobs:
 
       - name: Setup FreeBSD
         if: startsWith(matrix.shell, 'freebsd')
-        uses: vmactions/freebsd-vm@b9c3f24600acdef618ef1c9e2d3c6eeda4dce712  # v1.2.7
+        uses: vmactions/freebsd-vm@044ec2f67201891b964e4c39e588e3d5fe631380  # v1.3.3
         with:
           arch: ${{ matrix.arch }}
           cpu: ${{ steps.processor_count.outputs.PROCESSOR_COUNT }}
@@ -552,7 +552,7 @@ jobs:
           rm -f -r ./build/dist/lib/cmake
 
       - name: Upload Artifacts
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           if-no-files-found: error
           name: ${{ matrix.name }}-${{ matrix.build }}
@@ -578,7 +578,7 @@ jobs:
           mkdir -p dist/dist
 
       - name: Download artifacts
-        uses: actions/download-artifact@v6
+        uses: actions/download-artifact@v7
         with:
           path: dist/dist
 
